@@ -10,5 +10,5 @@ require (
 	github.com/grandcat/zeroconf v1.0.0
 	github.com/jfreymuth/pulse v0.1.1
 	github.com/pion/rtp v1.6.5
-	howett.net/plist v0.0.0-20201203080718-1454fab16a06
+	howett.net/plist v1.0.1
 )
