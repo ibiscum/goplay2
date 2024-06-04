@@ -24,7 +24,7 @@ type setupRtsp struct {
 type peerInfos struct {
 	Addresses                 []string `plist:"Addresses"`
 	Id                        string   `plist:"ID"`
-	ClockPortMatchingOverride bool     `plist:"SupportsClockPortMatchingOverride""`
+	ClockPortMatchingOverride bool     `plist:"SupportsClockPortMatchingOverride"`
 }
 
 type setupEventResponse struct {

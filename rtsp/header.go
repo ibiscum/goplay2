@@ -1,9 +1,9 @@
 package rtsp
 
-
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"net/http"
 	"sort"
 	"strings"
@@ -78,7 +78,10 @@ func (h *Header) read(rb *bufio.Reader) error {
 				break
 			}
 		}
-		rb.UnreadByte()
+		err = rb.UnreadByte()
+		if err != nil {
+			log.Fatal(err)
+		}
 
 		byts, err = readBytesLimited(rb, '\r', headerMaxValueLength)
 		if err != nil {
@@ -123,4 +126,3 @@ func (h Header) write(wb *bufio.Writer) error {
 
 	return nil
 }
-

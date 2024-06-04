@@ -11,10 +11,10 @@ import (
 )
 
 type Server struct {
-	aacDecoder     *codec.AacDecoder
-	sharedKey      []byte
-	player         *Player
-	controlChannel chan interface{}
+	aacDecoder *codec.AacDecoder
+	sharedKey  []byte
+	player     *Player
+	// controlChannel chan interface{}
 }
 
 func NewServer(player *Player) *Server {

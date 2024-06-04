@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"log"
 	"strconv"
 )
 
@@ -135,6 +136,9 @@ func (req Request) Write(bw *bufio.Writer) error {
 // String implements fmt.Stringer.
 func (req Request) String() string {
 	buf := bytes.NewBuffer(nil)
-	req.Write(bufio.NewWriter(buf))
+	err := req.Write(bufio.NewWriter(buf))
+	if err != nil {
+		log.Fatal(err)
+	}
 	return buf.String()
 }

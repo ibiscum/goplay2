@@ -1,14 +1,16 @@
-//+build linux
+//go:build linux
+// +build linux
 
 package codec
 
 import (
-	"github.com/jfreymuth/pulse"
-	"github.com/jfreymuth/pulse/proto"
 	"goplay2/config"
 	"log"
 	"math"
 	"time"
+
+	"github.com/jfreymuth/pulse"
+	"github.com/jfreymuth/pulse/proto"
 )
 
 const (
@@ -52,7 +54,7 @@ func NewStream() Stream {
 func (s *PaStream) Init(callBack StreamCallback) error {
 	var err error
 	streamCallback := func(out []int16) (int, error) {
-		var copied = 0
+		var copied int
 		if s.index+rtpPacketSize < audioBufferSize {
 			callBack(s.buffer[s.index:s.index+rtpPacketSize], 0*time.Second, 0*time.Second)
 			copied = copy(out, s.buffer[:s.index+rtpPacketSize])
@@ -109,9 +111,9 @@ type SetSinkVolume struct {
 	Volume    uint32
 }
 
-func (*SetSinkVolume) command() uint32 {
-	return proto.OpSetSinkVolume
-}
+// func (*SetSinkVolume) command() uint32 {
+// 	return proto.OpSetSinkVolume
+// }
 
 func (s *PaStream) SetVolume(volume float64) error {
 

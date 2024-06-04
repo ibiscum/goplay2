@@ -3,6 +3,7 @@ package rtsp
 import (
 	"bufio"
 	"fmt"
+	"log"
 )
 
 const (
@@ -30,7 +31,10 @@ func readBytesLimited(rb *bufio.Reader, delim byte, n int) ([]byte, error) {
 		}
 
 		if byts[len(byts)-1] == delim {
-			rb.Discard(len(byts))
+			_, err = rb.Discard(len(byts))
+			if err != nil {
+				log.Fatal(err)
+			}
 			return byts, nil
 		}
 	}

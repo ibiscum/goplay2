@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"log"
 	"strconv"
 )
 
@@ -218,6 +219,9 @@ func (res Response) Write(bw *bufio.Writer) error {
 // String implements fmt.Stringer.
 func (res Response) String() string {
 	buf := bytes.NewBuffer(nil)
-	res.Write(bufio.NewWriter(buf))
+	err := res.Write(bufio.NewWriter(buf))
+	if err != nil {
+		log.Fatal(err)
+	}
 	return buf.String()
 }

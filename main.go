@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"github.com/grandcat/zeroconf"
 	"goplay2/audio"
 	"goplay2/config"
 	"goplay2/event"
@@ -16,6 +15,8 @@ import (
 	"os"
 	"strings"
 	"sync"
+
+	"github.com/grandcat/zeroconf"
 )
 
 func main() {
@@ -54,6 +55,9 @@ func main() {
 	homekit.Device = homekit.NewAccessory(macAddress, config.Config.DeviceUUID, airplayDevice())
 	log.Printf("Starting goplay for device %v", homekit.Device)
 	homekit.Server, err = homekit.NewServer(macAddress, config.Config.DeviceName, ipStringAddr)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	server, err := zeroconf.Register(config.Config.DeviceName, "_airplay._tcp", "local.",
 		7000, homekit.Device.ToRecords(), []net.Interface{*iFace})
