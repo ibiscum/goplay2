@@ -9,7 +9,7 @@ require (
 	github.com/gordonklaus/portaudio v0.0.0-20230709114228-aafa478834f5
 	github.com/grandcat/zeroconf v1.0.0
 	github.com/jfreymuth/pulse v0.1.1
-	github.com/pion/rtp v1.8.6
+	github.com/pion/rtp v1.8.7
 	howett.net/plist v1.0.1
 )
 
